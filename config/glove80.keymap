@@ -363,6 +363,25 @@ behaviors {
         bindings = <&kp>, <&kp>;
     };
 
+    // My Mod tap
+    mmt: my_mod_tap {
+        compatible = "zmk,behavior-hold-tap";
+        #binding-cells = <2>;
+        flavor = "hold-preferred";
+        tapping-term-ms = <200>;
+        quick-tap-ms = <150>;
+        require-prior-idle-ms = <20>;
+        bindings = <&kp>, <&kpt>;
+    }
+
+    // Key Press with custom press time of 30ms
+    kpt: kp_tap_time {
+        compatible = "zmk,behavior-macro-one-param";
+        label = "KPT";
+        tap-ms = <30>;  // tweak as needed
+        #binding-cells = <1>;
+        bindings = <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>;
+    };
 
     // hold tab lower and shift
     skq: sticky_key_quick_release {
@@ -902,14 +921,13 @@ behaviors {
 /* Automatically generated macro definitions */
 / {
     macros {
+    
+        // Left german quationmark
         quote_left: quote_left {
             label = "&QUOTE_LEFT";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            
-            
-            bindings
-                = <&kp RALT>
+            bindings = <&kp RALT>
                 , <&kp U>
                 , <&kp N2>
                 , <&kp N0>
@@ -917,14 +935,13 @@ behaviors {
                 , <&kp E>
                 , <&kp RET>;
         };
-    quote_right: quote_right {
+    
+        // rightgerman quationmark
+        quote_right: quote_right {
             label = "&QUOTE_RIGHT";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            
-            
-            bindings
-                = <&kp RALT>
+            bindings = <&kp RALT>
                 , <&kp U>
                 , <&kp N2>
                 , <&kp N0>
@@ -935,10 +952,17 @@ behaviors {
     };
 };
 
+/* Automatically generated behavior definitions */
+/ {
+    behaviors {
+    
+    };
+};
+
 /* Automatically generated combos definitions */
 / {
     combos {
-            compatible = "zmk,combos";
+    compatible = "zmk,combos";
     };
 };
 
@@ -983,12 +1007,12 @@ behaviors {
 
         layer_Gaming {
             bindings = <
-     &trans   &trans     &trans     &trans   &trans                                                                                 &trans    &trans     &trans    &trans  &trans
- &kp RA(F1)    &kp B  &kp PG_UP  &kp PG_DN  &kp TAB   &kp V                                                               &trans    &trans    &trans     &trans    &trans  &trans
- &kp RA(F2)   &kp N5     &kp N1     &kp N2   &kp N3  &kp N4                                                               &trans    &trans    &trans      &kp O    &trans  &trans
- &kp RA(F3)    &kp T      &kp Q      &kp W    &kp E   &kp R                                                               &trans     &kp J     &kp K      &kp L  &kp SEMI  &trans
- &kp RA(F4)    &kp G      &kp A      &kp S    &kp D   &kp F  &mt LALT ESC  &kp SPACE   &tog 3  &kp BSPC  &kp DEL  &trans  &trans    &trans    &kp UP     &trans    &trans  &trans
- &kp RA(F5)  &kp F13      &kp Z      &kp X    &kp C             &kp LSHFT  &kp LCTRL  &kp F14    &trans   &trans  &trans          &kp LEFT  &kp DOWN  &kp RIGHT    &tog 1  &trans
+     &trans   &trans     &trans     &trans   &trans                                                                                  &trans    &trans     &trans    &trans  &trans
+ &kp RA(F1)    &kp B  &kp PG_UP  &kp PG_DN  &kp TAB   &kp V                                                                &trans    &trans    &trans     &trans    &trans  &trans
+ &kp RA(F2)   &kp N5     &kp N1     &kp N2   &kp N3  &kp N4                                                                &trans    &trans    &trans      &kp O    &trans  &trans
+ &kp RA(F3)    &kp T      &kp Q      &kp W    &kp E   &kp R                                                                &trans     &kp J     &kp K      &kp L  &kp SEMI  &trans
+ &kp RA(F4)    &kp G      &kp A      &kp S    &kp D   &kp F  &mmt LALT ESC  &kp SPACE   &tog 3  &kp BSPC  &kp DEL  &trans  &trans    &trans    &kp UP     &trans    &trans  &trans
+ &kp RA(F5)  &kp F13      &kp Z      &kp X    &kp C              &kp LSHFT  &kp LCTRL  &kp F14    &trans   &trans  &trans          &kp LEFT  &kp DOWN  &kp RIGHT    &tog 1  &trans
             >;
         };
 
