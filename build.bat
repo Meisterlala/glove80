@@ -6,7 +6,7 @@ set IMAGE=glove80-zmk-config-docker
 
 :: Set branch name from first parameter, default to main if not provided
 if "%~1"=="" (
-	set BRANCH=main
+	set BRANCH=refs/pull/36/head
 ) else (
 	set BRANCH=%~1
 )
