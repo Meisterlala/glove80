@@ -1,20 +1,14 @@
 @echo off
+setlocal
 
-setlocal enabledelayedexpansion
-
-set IMAGE=glove80-zmk-config-docker
-
-:: Set branch name from first parameter, default to main if not provided
-if "%~1"=="" (
-	set BRANCH=rgb-layer-24.12
-) else (
-	set BRANCH=%~1
+where wsl >nul 2>&1
+if errorlevel 1 (
+    echo Install WSL and Nix inside WSL first. See README.md. >&2
+    exit /b 1
 )
 
-:: Build Docker image
-docker build -t "%IMAGE%" .
-
-:: Run Docker container
-docker run --rm -v "%cd%:/config" -e UID=0 -e GID=0 -e BRANCH="%BRANCH%" "%IMAGE%"
-
-endlocal
+pushd "%~dp0"
+wsl --exec bash ./build.sh %*
+set "BUILD_EXIT=%ERRORLEVEL%"
+popd
+exit /b %BUILD_EXIT%

@@ -1,6 +1,4 @@
-{ pkgs ?  import <nixpkgs> {}
-, firmware ? import ../src {}
-}:
+{ firmware ? import (import ./upstream.nix) {} }:
 
 let
   config = ./.;
